@@ -8,7 +8,7 @@
 
 
             {% if post.video_file %}
-                <video width="100%" controls class="mb-3">
+                <video width="100%" controls controlsList="nodownload" class="mb-3">
                     <source src="{{ post.video_file.url }}" type="video/mp4">
                 </video>
             {% elif post.video_url %}

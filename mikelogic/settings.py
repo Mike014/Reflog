@@ -25,11 +25,17 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dqqpd8atj',
-    'API_KEY': '639679951146889',
-    'API_SECRET': 'VQMmk-wHzKtfQS9mPqK2JAopr2A'
-}
+import cloudinary
+
+cloudinary.config(
+    cloud_name='dqqpd8atj',
+    api_key='639679951146889',
+    api_secret='VQMmk-wHzKtfQS9mPqK2JAopr2A',
+    secure=True
+)
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -39,10 +45,9 @@ CLOUDINARY_STORAGE = {
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dev-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["reflog.onrender.com"]
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'reflog.onrender.com']
 
 # Application definition
 
@@ -143,5 +148,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
