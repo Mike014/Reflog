@@ -1,0 +1,36 @@
+{% extends "vlog/base.html" %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="mb-5 p-3 border border-secondary rounded">
+            <h3>{{ post.title }}</h3>
+            <p class="text-muted">{{ post.created_at|date:"d M Y – H:i" }}</p>
+
+            {% if post.video_file %}
+                <video width="100%" height="auto" controls class="mb-3">
+                    <source src="{{ post.video_file.url }}" type="video/mp4">
+                    Il tuo browser non supporta il video.
+                </video>
+            {% elif post.video_url %}
+                <div class="ratio ratio-16x9 mb-3">
+                    <iframe src="{{ post.video_url }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            {% endif %}
+
+            <p>{{ post.text_reflection|linebreaks }}</p>
+
+            {% if post.audio_note %}
+                <audio controls>
+                    <source src="{{ post.audio_note.url }}" type="audio/mpeg">
+                    Il tuo browser non supporta l'audio.
+                </audio>
+            {% endif %}
+
+            {% if post.tags %}
+                <p><strong>Tags:</strong> {{ post.tags }}</p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>Nessun post ancora. Inizia a pubblicare qualcosa.</p>
+    {% endfor %}
+{% endblock %}
