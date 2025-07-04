@@ -6,10 +6,10 @@
             <h3>{{ post.title }}</h3>
             <p class="text-muted">{{ post.created_at|date:"d M Y – H:i" }}</p>
 
+
             {% if post.video_file %}
-                <video width="100%" height="auto" controls class="mb-3">
+                <video width="100%" controls class="mb-3">
                     <source src="{{ post.video_file.url }}" type="video/mp4">
-                    Il tuo browser non supporta il video.
                 </video>
             {% elif post.video_url %}
                 <div class="ratio ratio-16x9 mb-3">
@@ -22,7 +22,6 @@
             {% if post.audio_note %}
                 <audio controls>
                     <source src="{{ post.audio_note.url }}" type="audio/mpeg">
-                    Il tuo browser non supporta l'audio.
                 </audio>
             {% endif %}
 
